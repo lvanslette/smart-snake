@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bdfcea2f-0c6d-48d8-80e2-844f6f22dc1d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/smart-snake.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/smart-snake.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pygamePlayer.py" beforeDir="false" afterPath="$PROJECT_DIR$/pygamePlayer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pygameSnake.py" beforeDir="false" afterPath="$PROJECT_DIR$/pygameSnake.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -105,6 +101,14 @@
       <option name="presentableId" value="Default" />
       <updated>1565229085195</updated>
     </task>
+    <task id="LOCAL-00001" summary="created more functional snake game, still needs some work.">
+      <created>1565645621960</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1565645621960</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -119,5 +123,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="created more functional snake game, still needs some work." />
+    <option name="LAST_COMMIT_MESSAGE" value="created more functional snake game, still needs some work." />
   </component>
 </project>
