@@ -1,7 +1,7 @@
 class Player:
     x = [0]
     y = [0]
-    step = 44
+    step = 44   # how far the snake head should jump in pixels in the frame
     direction = 0
     length = 3
 
@@ -25,7 +25,7 @@ class Player:
 
             # update previous positions
             for i in range(self.length - 1, 0, -1):
-                print("self.x[" + str(i) + "] = self.x[" + str(i - 1) + "]")
+                #print("self.x[" + str(i) + "] = self.x[" + str(i - 1) + "]")
                 self.x[i] = self.x[i - 1]
                 self.y[i] = self.y[i - 1]
 

@@ -1,5 +1,6 @@
 from pygame.locals import *
 from random import randint
+import os
 import pygame
 from pygamePlayer import Player
 import time
@@ -18,8 +19,8 @@ class Apple:
 
 class Game:
     def isCollision(self, x1, y1, x2, y2, bsize):
-        if x1 >= x2 and x1 <= x2 + bsize:
-            if y1 >= y2 and y1 <= y2 + bsize:
+        if x2 <= x1 <= x2 + bsize:
+            if y2 <= y1 <= y2 + bsize:
                 return True
         return False
 
@@ -40,12 +41,10 @@ class App:
 
     def on_init(self):
         pygame.init()
-        self._display_surf = pygame.display.set_mode((self.windowWidth, self.windowHeight), pygame.HWSURFACE)
-
-        pygame.display.set_caption('Pygame pythonspot.com example')
+        self._display_surf = pygame.display.set_mode([self.windowWidth, self.windowHeight])
         self._running = True
-        self._image_surf = pygame.image.load("snakePiece.png").convert()
-        self._apple_surf = pygame.image.load("apple.png").convert()
+        self._image_surf = pygame.image.load("snakePiece.png").convert_alpha()
+        self._apple_surf = pygame.image.load(os.path.join('C:/Users/vansll/PycharmProjects/smart-snake', 'apple.png')).convert_alpha()
 
     def on_event(self, event):
         if event.type == QUIT:
@@ -69,6 +68,13 @@ class App:
                 print("x[0] (" + str(self.player.x[0]) + "," + str(self.player.y[0]) + ")")
                 print("x[" + str(i) + "] (" + str(self.player.x[i]) + "," + str(self.player.y[i]) + ")")
                 exit(0)
+
+        # does snake collide with walls?
+        #print(self.player.x[0])
+        if self.player.x[0] < 0 or 0 > self.player.y[0] or self.player.x[0] > self.windowWidth or self.player.y[0] > self.windowHeight:
+            print("You lose! Collision: ")
+            print("x[0] (" + str(self.player.x[0]) + "," + str(self.player.y[0]) + ")")
+            exit(0)
 
         pass
 
