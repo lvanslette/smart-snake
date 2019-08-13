@@ -72,8 +72,8 @@ class App:
         # does snake collide with walls?
         #print(self.player.x[0])
         if self.player.x[0] < 0 or 0 > self.player.y[0] or self.player.x[0] > self.windowWidth or self.player.y[0] > self.windowHeight:
-            print("You lose! Collision: ")
-            print("x[0] (" + str(self.player.x[0]) + "," + str(self.player.y[0]) + ")")
+            print("You lose! Collision with the Wall: ")
+            print("Position: (" + str(self.player.x[0]) + "," + str(self.player.y[0]) + ")")
             exit(0)
 
         pass
