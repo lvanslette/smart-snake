@@ -44,7 +44,7 @@ class App:
         self._display_surf = pygame.display.set_mode([self.windowWidth, self.windowHeight])
         self._running = True
         self._image_surf = pygame.image.load("snakePiece.jpg").convert_alpha()
-        self._apple_surf = pygame.image.load(os.path.join('C:/Users/vansll/PycharmProjects/smart-snake', 'apple.png')).convert_alpha()
+        self._apple_surf = pygame.image.load('apple.png').convert_alpha()
 
     def on_event(self, event):
         if event.type == QUIT:
