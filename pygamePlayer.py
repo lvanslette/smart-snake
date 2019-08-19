@@ -1,7 +1,8 @@
+# class for the python snake itself
 class Player:
     x = [0]
     y = [0]
-    step = 44   # how far the snake head should jump in pixels in the frame
+    step = 67   # how far the snake head should jump in pixels in the frame
     direction = 0
     length = 3
 
@@ -15,8 +16,8 @@ class Player:
             self.y.append(-100)
 
         #initial positions, no collision
-        self.x[1] = 1*44
-        self.x[2] = 2*44
+        self.x[1] = 1*67
+        self.x[2] = 2*67
 
     def update(self):
 

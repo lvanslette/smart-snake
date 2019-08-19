@@ -1,6 +1,5 @@
 from pygame.locals import *
 from random import randint
-import os
 import pygame
 from pygamePlayer import Player
 import time
@@ -8,7 +7,7 @@ import time
 class Apple:
     x = 0
     y = 0
-    step = 44
+    step = 67
 
     def __init__(self, x, y):
         self.x = x * self.step
@@ -57,8 +56,8 @@ class App:
         # problem: snake eats at lower right hand side of apple, not apple
         for i in range(0, self.player.length):
             if self.game.isCollision(self.apple.x, self.apple.y, self.player.x[i], self.player.y[i], 44):
-                self.apple.x = randint(2, 9) * 44
-                self.apple.y = randint(2, 9) * 44
+                self.apple.x = randint(2, 8) * 67
+                self.apple.y = randint(2, 8) * 67
                 self.player.length = self.player.length + 1
 
         # does snake collide with itself?
@@ -67,6 +66,7 @@ class App:
                 print("You lose! Collision: ")
                 print("x[0] (" + str(self.player.x[0]) + "," + str(self.player.y[0]) + ")")
                 print("x[" + str(i) + "] (" + str(self.player.x[i]) + "," + str(self.player.y[i]) + ")")
+                print("Apple Position: " + str(self.apple.x) + ", " + str(self.apple.y))
                 exit(0)
 
         # does snake collide with walls?
@@ -74,6 +74,7 @@ class App:
         if self.player.x[0] < 0 or 0 > self.player.y[0] or self.player.x[0] > self.windowWidth or self.player.y[0] > self.windowHeight:
             print("You lose! Collision with the Wall: ")
             print("Position: (" + str(self.player.x[0]) + "," + str(self.player.y[0]) + ")")
+            print("Apple Position: " + str(self.apple.x) + ", " + str(self.apple.y))
             exit(0)
 
         pass
@@ -117,5 +118,6 @@ class App:
         self.on_cleanup()
 
 if __name__ == "__main__":
+
     theApp = App()
     theApp.on_execute()
