@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bdfcea2f-0c6d-48d8-80e2-844f6f22dc1d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/machine.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/machinePiece.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pygamePlayer.py" beforeDir="false" afterPath="$PROJECT_DIR$/pygamePlayer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pygameSnake.py" beforeDir="false" afterPath="$PROJECT_DIR$/pygameSnake.py" afterDir="false" />
     </list>
@@ -11,6 +14,13 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -141,8 +151,18 @@
       <option name="project" value="LOCAL" />
       <updated>1565922153220</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="changed step size in pygamePlayer.py and pygameSnake.py to 67 from 44 because snakePiece.png was a 66x67 image size, so changing the step size to 67 made the game look much better. The apple also does not spawn outside of the window anymore, that happened when rand(2, 9) * 67 equals 603 (67 * 9 = 603), which is outside of the 800x600 window range. I changed the expression to rand(2, 8) * 67 to correct the error.">
+      <created>1566224858774</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1566224858774</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.md" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -161,6 +181,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="created more functional snake game, still needs some work." />
     <MESSAGE value="added collision to wall if statement and also edited README on present issue" />
-    <option name="LAST_COMMIT_MESSAGE" value="added collision to wall if statement and also edited README on present issue" />
+    <MESSAGE value="changed step size in pygamePlayer.py and pygameSnake.py to 67 from 44 because snakePiece.png was a 66x67 image size, so changing the step size to 67 made the game look much better. The apple also does not spawn outside of the window anymore, that happened when rand(2, 9) * 67 equals 603 (67 * 9 = 603), which is outside of the 800x600 window range. I changed the expression to rand(2, 8) * 67 to correct the error." />
+    <option name="LAST_COMMIT_MESSAGE" value="changed step size in pygamePlayer.py and pygameSnake.py to 67 from 44 because snakePiece.png was a 66x67 image size, so changing the step size to 67 made the game look much better. The apple also does not spawn outside of the window anymore, that happened when rand(2, 9) * 67 equals 603 (67 * 9 = 603), which is outside of the 800x600 window range. I changed the expression to rand(2, 8) * 67 to correct the error." />
   </component>
 </project>

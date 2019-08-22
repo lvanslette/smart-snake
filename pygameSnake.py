@@ -2,6 +2,7 @@ from pygame.locals import *
 from random import randint
 import pygame
 from pygamePlayer import Player
+from machine import Machine
 import time
 
 class Apple:
@@ -24,44 +25,58 @@ class Game:
         return False
 
 class App:
-    windowWidth = 800
+    windowWidth = 1500
     windowHeight = 600
     player = 0
     apple = 0
 
     def __init__(self):
         self._running = True
-        self._display_surf = None
-        self._image_surf = None
+        self._display_surf = None   # create the display window and display variables for the objects being displayed
+        self._player_surf = None
         self._apple_surf = None
-        self.game = Game()
-        self.player = Player(5)
-        self.apple = Apple(5, 5)
+        self._machine_surf = None
+        self.game = Game()          # game object for collisions
+        self.player = Player(4)     # initialize snake with length 5
+        self.apple = Apple(3, 0)    # initialize apple directly in front of the snake
+        # self.machine = Machine('easy')    # initialize the machine and its difficulty
 
     def on_init(self):
-        pygame.init()
-        self._display_surf = pygame.display.set_mode([self.windowWidth, self.windowHeight])
+        pygame.init()   # initialize the window
+        self._display_surf = pygame.display.set_mode([self.windowWidth, self.windowHeight])     # set bounds of the window
         self._running = True
-        self._image_surf = pygame.image.load("snakePiece.jpg").convert_alpha()
-        self._apple_surf = pygame.image.load('apple.png').convert_alpha()
+        self._player_surf = pygame.image.load("snakePiece.jpg").convert_alpha()     # store the snake image as a variable
+        self._apple_surf = pygame.image.load('apple.png').convert_alpha()          # store the apple image as a variable
+        # self._machine_surf = pygame.image.load("machinePiece.jpg").convert_alpha()     # store the machine image as a variable
 
-    def on_event(self, event):
+    def on_event(self, event):      # not sure what this does, possibly if you press the red X on the window?
         if event.type == QUIT:
             self._running = False
 
-    def on_loop(self):
-        self.player.update()
+    def on_loop(self):      # checks to see if snake has collided with anything, displays positions if collision occurs
+        self.player.update()    # updates the position of the player
+        # self.machine.update() # updates the position of the machine
 
-        # does snake eat apple?
-        # problem: snake eats at lower right hand side of apple, not apple
-        for i in range(0, self.player.length):
-            if self.game.isCollision(self.apple.x, self.apple.y, self.player.x[i], self.player.y[i], 44):
-                self.apple.x = randint(2, 8) * 67
-                self.apple.y = randint(2, 8) * 67
-                self.player.length = self.player.length + 1
+        # does snake eat apple? note, if apple spawns in a x,y position that some part of the snake is currently at
+        #                       the snake should eat it anyways
+        self._is_collision_apple()
 
         # does snake collide with itself?
-        for i in range(2, self.player.length):
+        self.is_collision_self()
+
+        # does snake collide with walls?
+        self.is_collision_wall()
+
+        # does the player collide with the machine?
+        # self.is_collision_machine()
+
+        # does the machine collide with the player?
+        # self.is_collision_player()
+
+        pass
+
+    def is_collision_self(self):
+        for i in range(2, self.player.length): # doesn't start at 0 because snake head cant collide with itself
             if self.game.isCollision(self.player.x[0], self.player.y[0], self.player.x[i], self.player.y[i], 40):
                 print("You lose! Collision: ")
                 print("x[0] (" + str(self.player.x[0]) + "," + str(self.player.y[0]) + ")")
@@ -69,20 +84,26 @@ class App:
                 print("Apple Position: " + str(self.apple.x) + ", " + str(self.apple.y))
                 exit(0)
 
-        # does snake collide with walls?
-        #print(self.player.x[0])
-        if self.player.x[0] < 0 or 0 > self.player.y[0] or self.player.x[0] > self.windowWidth or self.player.y[0] > self.windowHeight:
+    def is_collision_wall(self):
+        if self.player.x[0] < 0 or 0 > self.player.y[0] or self.player.x[0] > self.windowWidth or \
+                self.player.y[0] > self.windowHeight:
             print("You lose! Collision with the Wall: ")
             print("Position: (" + str(self.player.x[0]) + "," + str(self.player.y[0]) + ")")
             print("Apple Position: " + str(self.apple.x) + ", " + str(self.apple.y))
             exit(0)
 
-        pass
+    def _is_collision_apple(self):
+        for i in range(0, self.player.length):
+            if self.game.isCollision(self.apple.x, self.apple.y, self.player.x[i], self.player.y[i], 44):
+                self.apple.x = randint(2, 8) * 67
+                self.apple.y = randint(2, 8) * 67
+                self.player.length = self.player.length + 1
 
-    def on_render(self):
+    def on_render(self):       # draws the snake and apple images on the window
         self._display_surf.fill((0, 0, 0))
-        self.player.draw(self._display_surf, self._image_surf)
+        self.player.draw(self._display_surf, self._player_surf)
         self.apple.draw(self._display_surf, self._apple_surf)
+        # self.machine.draw(self._display_surf, self._machine_surf)
         pygame.display.flip()
 
     def on_cleanup(self):
@@ -92,10 +113,11 @@ class App:
         if self.on_init() == False:
             self._running = False
 
-        while (self._running):
+        while (self._running):  # game loop
             pygame.event.pump()
-            keys = pygame.key.get_pressed()
+            keys = pygame.key.get_pressed()     # determines if a key has been pressed
 
+            # updates the snake position based on the key pressed
             if (keys[K_RIGHT]):
                 self.player.moveRight()
 
@@ -108,16 +130,16 @@ class App:
             if (keys[K_DOWN]):
                 self.player.moveDown()
 
+            # if esc pressed, end the game
             if (keys[K_ESCAPE]):
                 self._running = False
 
             self.on_loop()
             self.on_render()
 
-            time.sleep(50.0 / 1000.0)
+            time.sleep(50.0 / 1000.0)      # game time delay (50 millisecond delay)
         self.on_cleanup()
 
 if __name__ == "__main__":
-
-    theApp = App()
-    theApp.on_execute()
+    theApp = App()          # initialize the game
+    theApp.on_execute()     # start the game
